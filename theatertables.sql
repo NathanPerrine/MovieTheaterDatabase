@@ -41,6 +41,10 @@ create table order_(
 	foreign key(customer_id) references customer(customer_id)
 )
 
+alter table order_
+alter column customer_id set not null
+
+
 alter table order_ 
 	add concession_id int,
 	add foreign key(concession_id) references concession(concession_id),
@@ -69,6 +73,12 @@ create table ticket(
 	foreign key(show_time_id) references show_time(show_time_id)
 )
 
+alter table ticket
+alter column theater_id set not null,
+alter column customer_id set not null,
+alter column movie_id set not null,
+alter column show_time_id set not null
+
 -- create order concessions
 create table order_concession(
 	ord_con_id serial primary key,
@@ -78,5 +88,7 @@ create table order_concession(
 	foreign key(concession_id) references concession(concession_id)
 )
 
-
+alter table order_concession 
+alter column order_id set not null, 
+alter column concession_id set not null
 
